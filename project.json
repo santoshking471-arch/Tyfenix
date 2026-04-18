@@ -1,0 +1,27 @@
+{
+  "overview": "SlimeMart is a premium all-in-one ecommerce platform featuring a hyper slime UI — neon green and purple gradients, glassmorphic cards, glowing borders, and fluid animations. Customers browse products, manage a cart, and check out, while merchants manage inventory, orders, and view analytics through a protected admin dashboard.",
+  "features": [
+    "Product storefront with glassmorphic neon-glow cards",
+    "Shopping cart with real-time quantity updates",
+    "Full checkout flow with order confirmation",
+    "Customer account with order history",
+    "Admin dashboard with product CRUD and file uploads",
+    "Order management with status tracking",
+    "Sales analytics and inventory alerts",
+    "Internet Identity login for customers and merchants",
+    "Hyper slime design system: neon gradients, blob shapes, glow effects, smooth animations",
+    "Mobile-responsive layout"
+  ],
+  "category": "ecommerce",
+  "tags": [
+    "ecommerce",
+    "slime-ui",
+    "glassmorphism",
+    "admin-dashboard",
+    "shopping-cart",
+    "internet-identity",
+    "neon",
+    "premium"
+  ],
+  "last_updated": "2026-04-18T17:58:02.671Z"
+}

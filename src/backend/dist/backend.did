@@ -1,0 +1,150 @@
+type UserRole = 
+ variant {
+   Admin;
+   Customer;
+ };
+type UserId = principal;
+type Timestamp = int;
+type ShippingAddress = 
+ record {
+   city: text;
+   country: text;
+   postalCode: text;
+   state: text;
+   street: text;
+ };
+type Result_3 = 
+ variant {
+   err: Error;
+   ok: Order;
+ };
+type Result_2 = 
+ variant {
+   err: Error;
+   ok: Product;
+ };
+type Result_1 = 
+ variant {
+   err: Error;
+   ok: Customer;
+ };
+type Result = 
+ variant {
+   err: Error;
+   ok;
+ };
+type ProductSales = 
+ record {
+   name: text;
+   productId: ProductId;
+   revenue: nat;
+   totalSold: nat;
+ };
+type ProductId = nat;
+type ProductCategory = 
+ variant {
+   Beauty;
+   Books;
+   Clothing;
+   Electronics;
+   Food;
+   HomeGarden;
+   Other;
+   Sports;
+ };
+type Product = 
+ record {
+   category: ProductCategory;
+   createdAt: Timestamp;
+   description: text;
+   id: ProductId;
+   imageUrl: text;
+   isActive: bool;
+   name: text;
+   price: nat;
+   rating: float64;
+   stock: nat;
+ };
+type OrderStatus = 
+ variant {
+   Cancelled;
+   Confirmed;
+   Delivered;
+   Pending;
+   Shipped;
+ };
+type OrderItem = 
+ record {
+   productId: ProductId;
+   quantity: nat;
+   unitPrice: nat;
+ };
+type OrderId = nat;
+type Order = 
+ record {
+   createdAt: Timestamp;
+   customerId: UserId;
+   id: OrderId;
+   items: vec OrderItem;
+   shippingAddress: ShippingAddress;
+   status: OrderStatus;
+   totalAmount: nat;
+   updatedAt: Timestamp;
+ };
+type Error = 
+ variant {
+   AlreadyExists: text;
+   InvalidInput: text;
+   NotFound: text;
+   OutOfStock: text;
+   Unauthorized: text;
+ };
+type Customer = 
+ record {
+   addresses: vec ShippingAddress;
+   createdAt: Timestamp;
+   email: text;
+   id: UserId;
+   name: text;
+   role: UserRole;
+ };
+type CartItem = 
+ record {
+   productId: ProductId;
+   quantity: nat;
+ };
+type Analytics = 
+ record {
+   orderCount: nat;
+   topProducts: vec ProductSales;
+   totalRevenue: nat;
+ };
+service : {
+  addAddress: (address: ShippingAddress) -> (Result_1);
+  addToCart: (productId: ProductId, quantity: nat) -> (Result);
+  clearCart: () -> ();
+  createProduct: (name: text, description: text, price: nat, imageUrl: 
+   text, category: ProductCategory, stock: nat) -> (Result_2);
+  deleteProduct: (id: ProductId) -> (Result);
+  getAnalytics: () -> (Analytics) query;
+  getCart: () -> (vec CartItem) query;
+  getMyProfile: () -> (opt Customer) query;
+  getOrder: (id: OrderId) -> (opt Order) query;
+  getProduct: (id: ProductId) -> (opt Product) query;
+  listAllOrders: () -> (vec Order) query;
+  listCustomers: () -> (vec Customer) query;
+  listMyOrders: () -> (vec Order) query;
+  listProducts: (category: opt ProductCategory) -> (vec Product) query;
+  placeOrder: (shippingAddress: ShippingAddress) -> (Result_3);
+  registerCustomer: (name: text, email: text) -> (Result_1);
+  removeFromCart: (productId: ProductId) -> (Result);
+  searchProducts: (term: text) -> (vec Product) query;
+  setCustomerRole: (customerId: UserId, role: UserRole) -> (Result_1);
+  updateCartItem: (productId: ProductId, quantity: nat) -> (Result);
+  updateOrderStatus: (id: OrderId, status: OrderStatus) -> (Result_3);
+  updateProduct: (id: ProductId, name: opt text, description: opt text,
+   price: opt nat, imageUrl: opt text, category: opt ProductCategory, stock:
+   opt nat, isActive: opt bool) -> (Result_2);
+  updateProfile: (name: opt text, email: opt text) -> (Result_1);
+  uploadProductImage: (id: ProductId, imageUrl: text) -> (Result);
+}
