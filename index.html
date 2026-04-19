@@ -12,6 +12,37 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <script type="module" crossorigin src="/assets/index-C-xUBXvy.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-rWMwaiS-.css">
+    export type {
+  Product,
+  Order,
+  OrderItem,
+  Customer,
+  CartItem,
+  Analytics,
+  ShippingAddress,
+  ProductSales,
+  Error_,
+  Timestamp,
+  ProductId,
+  OrderId,
+  UserId,
+  Result,
+  Result_1,
+  Result_2,
+  Result_3,
+  Option,
+  Some,
+  None,
+} from "../backend.d";
+
+export { OrderStatus, ProductCategory, UserRole } from "../backend.d";
+
+// UI-extended types
+export interface CartItemWithProduct {
+  productId: bigint;
+  quantity: bigint;
+  product?: import("../backend.d").Product;
+}
   </head>
   <body>
     <div id="root"></div>
@@ -260,5 +291,28 @@
     transition: none;
   }
 }
+    export type {
+  Product,
+  Order,
+  OrderItem,
+  Customer,
+  CartItem,
+  Analytics,
+  ShippingAddress,
+  ProductSales,
+  Error_,
+  Timestamp,
+  ProductId,
+  OrderId,
+  UserId,
+  Result,
+  Result_1,
+  Result_2,
+  Result_3,
+  Option,
+  Some,
+  None,
+} from "../backend.d";
+
   </body>
 </html>
